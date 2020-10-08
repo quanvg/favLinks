@@ -1,6 +1,6 @@
 import React from "react";
-// import Table from './Table';
-// import Form from './Form';
+import Table from "./Table";
+import Form from "./Form";
 
 class LinkContainer extends React.Component {
   constructor(props) {
@@ -8,6 +8,13 @@ class LinkContainer extends React.Component {
     /* 
         TODO - Create state object for storing favLinks
     */
+    this.state = {
+      favLinks: [""],
+    };
+
+    this.removeCharacter = this.removeCharacter.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.removeLink = this.removeLink.bind(this);
   }
 
   removeCharacter = index => {
@@ -16,10 +23,22 @@ class LinkContainer extends React.Component {
     */
   };
 
-  handleSubmit = favLink => {
+  handleSubmit = index => {
     /*
         TODO - Create logic to setState and add new favLink to favLinks array in state
     */
+    this.setState({
+      // favLinks: this.props.
+    });
+  };
+
+  removeLink = index => {
+    /*
+        TODO - Create logic to setState and removes an item favLink to favLinks array in state
+    */
+    this.setState(({ favLinks }) => {
+      // favLinks: favLinks.removeCharacter[index]
+    });
   };
 
   render() {
@@ -30,11 +49,12 @@ class LinkContainer extends React.Component {
         {/*
             TODO - Add Table Component
         */}
-
+        <Table linkData={this.state.favLinks} removeLink={"removeLink"} />
         <br />
 
         <h3>Add New</h3>
         {/*TODO - Add Form Component */}
+        <Form handleSubmit={this.handleSubmit.bind(this)} />
       </div>
     );
   }
