@@ -21,7 +21,9 @@ const TableBody = props => {
       <tr key={index}>
         <td>{row.name}</td>
         <td>
-          <a href={row.URL}>{row.URL}</a>
+          <a href={row.URL} target="_blank" rel="noopener noreferrer">
+            {row.URL}
+          </a>
         </td>
         <td>
           <button onClick={() => props.removeLink(index)}>Delete</button>

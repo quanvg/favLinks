@@ -9,18 +9,26 @@ class Form extends Component {
     */
     this.state = {
       name: "",
-      url: "",
+      URL: "",
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   handleChange = event => {
     /*
             TODO - Logic for changing state based on form changes
     */
-    this.setState({
-      name: event.target.value,
-      url: event.target.value,
-    });
+    this.setState(
+      {
+        [event.target.name]: event.target.value,
+      },
+      // () =>
+      //   console.log(
+      //     `form's state updated: name:${this.state.name}\nURL: ${this.state.URL}`,
+      //   ),
+    );
   };
 
   onFormSubmit = event => {
@@ -30,7 +38,15 @@ class Form extends Component {
     /*
             TODO - Logic for calling props to handle submission and setting state changes
     */
-    this.props.handleSubmit(this.state);
+    console.log(
+      // `onFormSubmit invoked, updated state: ${Object.values(this.state)}`,
+      `onFormSubmit invoked, passed state to LinkContainer's handleSubmit: ${JSON.stringify(
+        this.state,
+        null,
+        4,
+      )}`,
+    );
+    this.props.onHandleSubmit(this.state);
   };
 
   render() {
@@ -38,20 +54,26 @@ class Form extends Component {
       <Fragment>
         <form>
           {/* 
-                    TODO - Logic for returning a form element with labels and inputs for link name and URL
+            TODO - Logic for returning a form element with labels and inputs for link name and URL
           */}
           <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
             name="name"
-            onChange={this.handleChange.bind(this)}
+            value={this.state.name}
+            onChange={this.handleChange}
           />
-          <br />
-          <label htmlFor="url">URL</label>
-          <input type="text" id="url" name="url" />
+          <label htmlFor="URL">URL</label>
+          <input
+            type="text"
+            id="URL"
+            name="URL"
+            value={this.state.URL}
+            onChange={this.handleChange}
+          />
         </form>
-        <button onSubmit={this.onFormSubmit.bind(this)}>Submit</button>
+        <button onClick={this.onFormSubmit}>Submit</button>
       </Fragment>
     );
   }
