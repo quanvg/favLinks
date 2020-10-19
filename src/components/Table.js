@@ -12,12 +12,33 @@ const TableHeader = () => {
   );
 };
 
+const TableBody = props => {
+  const rows = props.linkData.map((row, index) => {
+    return (
+      <tr key={index}>
+        <td>{row.name}</td>
+        <td>
+          <a href={row.URL} target="_blank" rel="noopener noreferrer">
+            {row.URL}
+          </a>
+        </td>
+        <td>
+          <button onClick={() => props.removeLink(index)}>Delete</button>
+        </td>
+      </tr>
+    );
+  });
+
+  return <tbody>{rows}</tbody>;
+};
+
 const Table = props => {
   const { linkData, removeLink } = props;
 
   return (
     <table>
       <TableHeader />
+      <TableBody linkData={linkData} removeLink={removeLink} />
     </table>
   );
 };
