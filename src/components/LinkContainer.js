@@ -11,6 +11,27 @@ export default class LinkContainer extends Component {
     };
   }
 
+  handleSubmit = favLink => {
+    this.setState(
+      {
+        favLinks: this.state.favLinks.concat(favLink),
+      },
+      () =>
+        console.log(
+          // "handleSubmit updated state favLinks:", this.state.favLinks,
+          // `handleSubmit invoked, updated state: ${JSON.parse(
+          //   JSON.stringify(this.state),
+          // )}\n`,
+          `handleSubmit invoked, updated state: ${JSON.stringify(
+            this.state,
+            null,
+            4,
+          )}\n`,
+          this.state.favLinks,
+        ),
+    );
+  };
+
   render() {
     return (
       <div>
@@ -19,7 +40,7 @@ export default class LinkContainer extends Component {
         <Table linkData={this.state.favLinks} removeLink={this.removeLink} />
         <br />
         <h3>Add New</h3>
-        <Form />
+        <Form onHandleSubmit={this.handleSubmit} />
       </div>
     );
   }
