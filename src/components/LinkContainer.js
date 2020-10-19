@@ -12,45 +12,20 @@ export default class LinkContainer extends Component {
   }
 
   handleSubmit = favLink => {
-    this.setState(
-      {
-        favLinks: this.state.favLinks.concat(favLink),
-      },
-      () =>
-        console.log(
-          // "handleSubmit updated state favLinks:", this.state.favLinks,
-          // `handleSubmit invoked, updated state: ${JSON.parse(
-          //   JSON.stringify(this.state),
-          // )}\n`,
-          `handleSubmit invoked, updated state: ${JSON.stringify(
-            this.state,
-            null,
-            4,
-          )}\n`,
-          this.state.favLinks,
-        ),
-    );
+    this.setState({
+      favLinks: this.state.favLinks.concat(favLink),
+    });
   };
 
   removeLink = index => {
-    this.setState(
-      prevState => ({
-        favLinks: prevState.favLinks.filter((_, i) => i !== index),
-      }),
-      () =>
-        console.log(
-          `removeLink() removed/updated state: ${JSON.stringify(
-            this.state,
-            null,
-            4,
-          )}`,
-        ),
-    );
+    this.setState(prevState => ({
+      favLinks: prevState.favLinks.filter((_, i) => i !== index),
+    }));
   };
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>My Favorite Links</h1>
         <p>Add a new url with a name and link to the table.</p>
         <Table linkData={this.state.favLinks} removeLink={this.removeLink} />
