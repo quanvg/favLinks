@@ -32,6 +32,22 @@ export default class LinkContainer extends Component {
     );
   };
 
+  removeLink = index => {
+    this.setState(
+      prevState => ({
+        favLinks: prevState.favLinks.filter((_, i) => i !== index),
+      }),
+      () =>
+        console.log(
+          `removeLink() removed/updated state: ${JSON.stringify(
+            this.state,
+            null,
+            4,
+          )}`,
+        ),
+    );
+  };
+
   render() {
     return (
       <div>
